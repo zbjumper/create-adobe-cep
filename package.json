@@ -1,0 +1,33 @@
+{
+  "name": "@zbkit/create-adobe-cep",
+  "version": "0.0.1",
+  "description": "",
+  "type": "module",
+  "bin": {
+    "create-adobe-cep": "dist/index.js"
+  },
+  "scripts": {
+    "dev": "tsdown src/index.ts --watch",
+    "build": "tsdown src/index.ts --minify",
+    "prepublishOnly": "pnpm build"
+  },
+  "files": [
+    "dist",
+    "template"
+  ],
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.32.1",
+  "dependencies": {
+    "fs-extra": "^11.3.4",
+    "inquirer": "^13.3.2"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/inquirer": "^9.0.9",
+    "@types/node": "^25.5.0",
+    "tsdown": "^0.21.5",
+    "typescript": "^6.0.2"
+  }
+}
