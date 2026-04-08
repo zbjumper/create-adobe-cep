@@ -4,7 +4,7 @@
   "description": "",
   "type": "module",
   "bin": {
-    "create-adobe-cep": "dist/index.js"
+    "create-adobe-cep": "dist/index.mjs"
   },
   "scripts": {
     "dev": "tsdown src/index.ts --watch",

@@ -13,7 +13,25 @@ const __dirname = path.dirname(__filename)
 const argv = process.argv.slice(2)
 let projectName = argv[0]
 
-async function createCepProject() {
+const renameUnderscoreToDot = async (rootDir: string) => {
+  const entries = await fs.readdir(rootDir, { withFileTypes: true })
+
+  for (const entry of entries) {
+    const oldPath = path.join(rootDir, entry.name)
+
+    if (entry.isDirectory()) {
+      await renameUnderscoreToDot(oldPath)
+    }
+
+    if (entry.name.startsWith('_')) {
+      const newName = `.${entry.name.slice(1)}`
+      const newPath = path.join(rootDir, newName)
+      await fs.move(oldPath, newPath)
+    }
+  }
+}
+
+const createCepProject = async () => {
   // 交互询问
   if (!projectName) {
     const res = await inquirer.prompt([
@@ -38,6 +56,7 @@ async function createCepProject() {
   // 复制模板（核心）
   const templatePath = path.join(__dirname, '../template')
   await fs.copy(templatePath, targetPath)
+  await renameUnderscoreToDot(targetPath)
 
   console.log(`✅ 创建成功：${projectName}`)
   console.log(`👉 cd ${projectName} && pnpm install`)

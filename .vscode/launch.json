@@ -1,0 +1,28 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug create-adobe-cep",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "program": "${workspaceFolder}/dist/index.mjs",
+      "args": [
+        "tmp/${input:projectName}"
+      ],
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "console": "integratedTerminal",
+      "preLaunchTask": "prepare debug"
+    }
+  ],
+  "inputs": [
+    {
+      "id": "projectName",
+      "type": "promptString",
+      "description": "输入用于调试的生成目录名",
+      "default": "debug-cep-plugin"
+    }
+  ]
+}

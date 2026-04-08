@@ -1,0 +1,29 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "clean debug tmp",
+      "type": "shell",
+      "command": "rm -rf tmp && mkdir -p tmp",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      }
+    },
+    {
+      "label": "pnpm build",
+      "type": "shell",
+      "command": "pnpm build",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      }
+    },
+    {
+      "label": "prepare debug",
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "clean debug tmp",
+        "pnpm build"
+      ]
+    }
+  ]
+}
